@@ -20,5 +20,13 @@ pipeline {
                 '''
             }
         }
+        stage('Test'){
+            agent{}
+            steps{
+                sh '''
+                    echo "Test stage"
+                '''
+            }
+        }
     }
 }
