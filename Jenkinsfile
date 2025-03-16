@@ -99,7 +99,7 @@ pipeline {
                 }
             }
             environment{
-                CI_ENVIRONMENT_URL = "${env.DEPLOY_URL}"
+                CI_ENVIRONMENT_URL = "${env.DEPLOY_OUTPUT}"
             }
             steps{
                 sh '''
