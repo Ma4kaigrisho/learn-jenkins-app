@@ -103,7 +103,7 @@ pipeline {
             }
             steps{
                 sh '''
-                    $CI_ENVIRONMENT_URL = ${env.DEPLOY_URL}
+                    ${CI_ENVIRONMENT_URL} = ${env.DEPLOY_URL}
                     npx playwright test --reporter=html
                 '''
             }
