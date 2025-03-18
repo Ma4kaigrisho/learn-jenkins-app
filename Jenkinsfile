@@ -7,6 +7,18 @@ pipeline {
         
     }
     stages {
+        stage('AWS'){
+            agent{
+                docker{
+                    image 'amazon/aws-cli'
+                }
+            }
+            steps{
+                sh '''
+                    aws --version
+                '''
+            }
+        }        
         stage('Build') {
             agent{
                 docker{
@@ -28,18 +40,6 @@ pipeline {
         }
         stage('Run tests'){
             parallel {
-                stage('AWS'){
-                    agent{
-                        docker{
-                            image 'amazon/aws-cli'
-                        }
-                    }
-                    steps{
-                        sh '''
-                            aws --version
-                        '''
-                    }
-                }
                 stage('Unit Tests'){
                     agent{
                         docker{
