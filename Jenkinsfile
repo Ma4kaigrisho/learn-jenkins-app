@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment{
         REACT_APP_VERSION = "1.0.$BUILD_ID"
+        APP_NAME = 'jenkinsapp'
         AWS_DEFAULT_REGION = 'eu-north-1'
         AWS_ECS_CLUSTER = "JenkinsApp-Cluster-Prod"
         AWS_ECS_SERVICE_PROD = "JenkinsApp-Service-Prod"
@@ -38,7 +39,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'my-aws', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                     sh '''
-                        docker build -t myjenkinsapp .
+                        docker build -t $APP_NAME:$REACT_APP_VERSION .
                     '''
                 }
             }
